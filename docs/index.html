@@ -1,67 +1,246 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Team 7: Virus Tracker</title>
-	<meta name="author" content="Kai-Wei Chang" />
-	<meta name="description" content="VR Capstone website." />
-	<meta name="Resource-type" content="Document" />
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="dist/fullpage.css" />
-	<link rel="stylesheet" type="text/css" href="examples.css" />
+    <title>Mind Your Touch</title>
+<!--
+
+Lava Landing Page
+
+https://templatemo.com/tm-540-lava-landing-page
+
+-->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+
+    <link rel="stylesheet" href="assets/css/templatemo-lava.css">
+
+    <link rel="stylesheet" href="assets/css/owl-carousel.css">
 
 </head>
+
 <body>
 
-<div id="fullpage">
-	<div class="section" id="section0">
-	    <h1>2020 VR Capstone</h1>
-		<h1>Team 7: Virus Tracker</h1>
-		<br>
-		<h2>Members:</h2>
-	    <p>Kai-Wei Chang</p>
-	    <p>Cheng Ni</p>
-	    <p>Pei Lin Wu</p>
-	    <p>Sujie Zhou</p>
-	</div>
-	<div class="section" id="section1">
-		<h1>Project Concept</h1>
-		<br>
-		<iframe width="523" height="392" src="https://www.youtube.com/embed/_o9SxDFPUiA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	</div>
-	<div class="section" id="section2">
-		<h1>Blog 1</h1>
-		<h2>Accomplished so far</h2>
-		<p>We discussed several potential ideas for our project, including using Oculus Quest to develop an escape room or a virtual classroom given the current circumstance of working/learning from home. However, as the instructor and TAs have pointed out, the scopes of these ideas are too large to finish within 9 weeks. To reduce the scope and to better relate our project with COVID-19, we decided to use Magic Leap to develop a virus tracker that tracks all the contaminated surfaces that users should be aware of.</p>
-		<br>
-		<h2>Project idea</h2>
-		<p>Our application would track all the surfaces that potentially have virus on it after being touched by the user. Initially, we would assume that all surfaces are clean. Then, every time the user touches a surface with hand, we would mark that area as contaminated. This provides user the information of the surfaces in which he/she should clean because of possible contamination. Additional features that we can include are:</p>
-		<li>Simulate the process that virus stay on surface touched by MR user</li>
-		<li>Simulate the process that virus can infect other MR users</li>
-		<li>Simulate the fact that virus will be inactive after certain amount of time</li>
-		<li>Users can kill virus using simulated alcohol wipes</li>
-		<li>Stop the infection chain when user wash their hands in time</li>
-	</div>
-	<div class="section" id="section3">
-      	<h1>Video Pitch</h1>
-      	<p>Filler</p>
-	</div>
-	<div class="section" id="section4">
-		<h1>Team Members Intro</h1>
-		<p>Filler</p>
-	</div>
-</div>
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
 
-<script type="text/javascript" src="dist/fullpage.js"></script>
-<script type="text/javascript" src="examples.js"></script>
-<script type="text/javascript">
-    var myFullpage = new fullpage('#fullpage', {
-        sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#FF7133', '#FFC0CB'],
-        navigation: true,
-        navigationPosition: 'right',
-        navigationTooltips: ['Home page', 'Project Concept', 'Blog 1', 'Video Pitch', 'Team Members Intro']
-    });
-</script>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            Mind Your Touch
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="#welcome" class="menu-item">Home</a></li>
+                            <li class="scroll-to-section"><a href="#promotion" class="menu-item">Concept</a></li>
+                            <li class="scroll-to-section"><a href="#about" class="menu-item">Members</a></li>
+                            <li class="scroll-to-section"><a href="./blog.html">Blogs</a></li>
+                            <li class="scroll-to-section"><a href="https://github.com/UWRealityLab/vrcapstone20sp-team7">Github</a></li>
+                            <li class="scroll-to-section"><a href="#end" class="menu-item">Credits</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+
+    <!-- ***** Welcome Area Start ***** -->
+    <div class="welcome-area" id="welcome">
+
+        <!-- ***** Header Text Start ***** -->
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                        <h2>A <em>mixed-reality app</em> that tracks and identifies surfaces touched by contaminated hands.</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Header Text End ***** -->
+    </div>
+    <!-- ***** Welcome Area End ***** -->
+
+	<!-- ***** Features Big Item Start ***** -->
+    <section class="section" id="promotion">
+        <div class="container">
+            <div class="row">
+                <div class="left-image col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix-big"
+                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <a rel="nofollow" href="https://www.magicleap.com/en-us">
+                    <img src="assets/images/left-image.png" class="rounded img-fluid d-block mx-auto" alt="App">
+                	</a>
+                </div>
+                <div class="right-text offset-lg-1 col-lg-6 col-md-12 col-sm-12 mobile-bottom-fix">
+                    <ul>
+                        <li data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                            <img src="assets/images/about-icon-01.png" alt="">
+                            <div class="text">
+                                <h4>Surface Contamination Tracking</h4>
+                                <p>Tracks and visualizes surrounding surfaces touched by contaminated hands. Allows users to identify areas that require cleaning</p>
+                            </div>
+                        </li>
+                        <li data-scroll-reveal="enter right move 30px over 0.6s after 0.5s">
+                            <img src="assets/images/about-icon-02.png" alt="">
+                            <div class="text">
+                                <h4>Virus Inactivation Simulation</h4>
+                                <p>Virus become inactive after it leaves our bodies. We color-code regions by  and fast-forward time to simulate areas where virus dies off.</p>
+                            </div>
+                        </li>
+                        <li data-scroll-reveal="enter right move 30px over 0.6s after 0.6s">
+                            <img src="assets/images/about-icon-03.png" alt="">
+                            <div class="text">
+                                <h4>Developed on Magic Leap 1</h4>
+                                <p><a rel="nofollow" href="https://www.magicleap.com/en-us/magic-leap-1">Magic Leap 1</a> creates spatial maping of users' surroundings. This helps us to identify the location of hands and surfaces.</p>
+                            </div>
+                        </li>
+                        <p></p>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <div class="left-image-decor"></div>
+
+	<!-- ***** Features Big Item Start ***** -->
+    <section class="section" id="about">
+        <div class="container">
+        	<div class="row">
+                    <div class="left-text col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                        <center><h1>Members</h1></center>
+                        <br>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                        	<!-- put image here -->
+                            <img src="assets/images/features-icon-1.png" alt="">
+                            <h4>Kai-Wei Chang</h4>
+                            <p>A CS student.</p>
+                            <a href="" class="main-button">
+                                Button
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter bottom move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                        	<!-- put image here -->
+                            <img src="assets/images/features-icon-2.png" alt="">
+                            <h4>Cheng Ni</h4>
+                            <p>Another CS student.</p>
+                            <a href="" class="main-button">
+                                Button
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                        	<!-- put image here -->
+                            <img src="assets/images/features-icon-3.png" alt="">
+                            <h4>Pei Lin Wu</h4>
+                            <p>Another CS student.</p>
+                            <a href="" class="main-button">
+                                Button
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                        	<!-- put image here -->
+                            <img src="assets/images/features-icon-1.png" alt="">
+                            <h4>Sujie Zhou</h4>
+                            <p>Yet another CS student.</p>
+                            <a href="" class="main-button">
+                                Button
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->    
+
+    <!-- ***** Footer Start ***** -->
+    <footer id="end">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sub-footer">
+                        <p>Webpage template credit: 
+
+                        <a rel="nofollow" href="https://templatemo.com/tm-540-lava-landing-page">2020 Lava Landing Page</a>
+
+                        | Designed by <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
+                        <p>Photo credit for magnifying glass with virus: <a rel="nofollow" href="https://www.freepik.com/free-vector/magnifying-glass-with-different-types-virus-lens_5601859.htm">brgfx on www.freepik.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script>
+
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
 
 </body>
 </html>
