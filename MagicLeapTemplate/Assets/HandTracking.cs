@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.MagicLeap;
 
 public class HandTracking : MonoBehaviour
@@ -8,7 +9,8 @@ public class HandTracking : MonoBehaviour
     public enum HandPoses { Ok, Finger, Thumb, OpenHand, Fist, NoPose };
     public HandPoses pose = HandPoses.NoPose;
     public Vector3[] pos;
-    public GameObject sphereThumb, sphereIndex, sphereWrist;
+    public GameObject handCenter;
+    public Text text;
 
     private MLHandTracking.HandKeyPose[] _gestures;
 
@@ -57,7 +59,11 @@ public class HandTracking : MonoBehaviour
             pose = HandPoses.NoPose;
         }
 
-        if (pose != HandPoses.NoPose) ShowPoints();
+        //if (pose != HandPoses.Ok)
+        //{
+        //    Debug.Log("asdfasdf");
+        //}
+        ShowPoints();
     }
 
     private void ShowPoints()
@@ -68,9 +74,14 @@ public class HandTracking : MonoBehaviour
         pos[1] = MLHandTracking.Left.Index.KeyPoints[2].Position;
         // Left Hand Wrist 
         pos[2] = MLHandTracking.Left.Wrist.KeyPoints[0].Position;
-        sphereThumb.transform.position = pos[0];
-        sphereIndex.transform.position = pos[1];
-        sphereWrist.transform.position = pos[2];
+        // sphereThumb.transform.position = pos[0];
+        // sphereIndex.transform.position = pos[1];
+        // sphereWrist.transform.position = pos[2];
+        Vector3 temp = MLHandTracking.Left.Center;
+        temp.y -= (float)0.05;
+        handCenter.transform.position = temp;
+        temp.y += (float)0.1;
+        text.transform.position = temp;
     }
 
     private bool GetGesture(MLHandTracking.Hand hand, MLHandTracking.HandKeyPose type)
