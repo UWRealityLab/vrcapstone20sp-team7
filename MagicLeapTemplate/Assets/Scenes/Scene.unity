@@ -326,6 +326,7 @@ MonoBehaviour:
   hand: {fileID: 164732762}
   invisible: {fileID: 0}
   material: {fileID: 2100000, guid: 07813f85581dd89409d31ff28b90d50a, type: 2}
+  endColor: {r: 0.254717, g: 0.013216449, b: 0.013216449, a: 0}
 --- !u!54 &164732768
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -701,8 +702,8 @@ MonoBehaviour:
     Mind Your Touch
 
 
-    Try touching things with your left
-    hand!
+    Touch surfaces to see the virus
+    spread
 
 '
   m_isRightToLeft: 0
@@ -749,7 +750,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 53
+  m_firstOverflowCharacterIndex: 54
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -773,7 +774,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1151995791}
-    characterCount: 69
+    characterCount: 67
     spriteCount: 0
     spaceCount: 13
     wordCount: 12

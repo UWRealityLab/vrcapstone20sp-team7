@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject SpatialMapper;
     public bool IsIntroExplicit; // if true, meshing will be disabled until intro finishes
 
-    private float timeout = 10f;
+    private float timeout = 5f;
     private float timeSinceLastCheck = 0f;
 
     // Start is called before the first frame update
