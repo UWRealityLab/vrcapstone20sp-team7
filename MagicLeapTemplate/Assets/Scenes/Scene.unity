@@ -255,7 +255,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164732762}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -322,7 +322,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  count: 0
+  marking: {fileID: 0}
+  hand: {fileID: 164732762}
+  invisible: {fileID: 0}
+  material: {fileID: 2100000, guid: 07813f85581dd89409d31ff28b90d50a, type: 2}
 --- !u!54 &164732768
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -534,7 +537,6 @@ MonoBehaviour:
   pose: 5
   pos: []
   handCenter: {fileID: 164732762}
-  text: {fileID: 0}
 --- !u!20 &528193551 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 20294507499185110, guid: 24158fb1437dc8e418d893939758764d,
@@ -633,6 +635,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &829302353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1923388488726986, guid: b6af97b52b3429641aa904690975fa80,
+    type: 3}
+  m_PrefabInstance: {fileID: 1578438395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1151995789
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +925,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23288401035578246, guid: b6af97b52b3429641aa904690975fa80,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6af97b52b3429641aa904690975fa80, type: 3}
 --- !u!1 &1714925348
@@ -1172,6 +1185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1847ab1cafe7a41930ba732fd726ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HeadlockedCanvas: {fileID: 407345257}
+  SpatialMapper: {fileID: 829302353}
+  IsIntroExplicit: 0
 --- !u!4 &1932952942
 Transform:
   m_ObjectHideFlags: 0

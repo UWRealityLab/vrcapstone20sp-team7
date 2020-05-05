@@ -10,7 +10,7 @@ public class HandTracking : MonoBehaviour
     public HandPoses pose = HandPoses.NoPose;
     public Vector3[] pos;
     public GameObject handCenter;
-    public Text text;
+    // public Text text;
 
     private MLHandTracking.HandKeyPose[] _gestures;
 
@@ -78,10 +78,8 @@ public class HandTracking : MonoBehaviour
         // sphereIndex.transform.position = pos[1];
         // sphereWrist.transform.position = pos[2];
         Vector3 temp = MLHandTracking.Left.Center;
-        temp.y -= (float)0.05;
+        temp.y -= (float)0.03;
         handCenter.transform.position = temp;
-        temp.y += (float)0.1;
-        text.transform.position = temp;
     }
 
     private bool GetGesture(MLHandTracking.Hand hand, MLHandTracking.HandKeyPose type)
