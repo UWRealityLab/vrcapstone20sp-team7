@@ -9,7 +9,7 @@ public class HandTracking : MonoBehaviour
     public enum HandPoses { Ok, Finger, Thumb, OpenHand, Fist, NoPose };
     public HandPoses pose = HandPoses.NoPose;
     public Vector3[] pos;
-    public GameObject handCenter;
+    public GameObject leftThumb, leftMiddle, leftPinky, leftCenter;
     // public Text text;
 
     private MLHandTracking.HandKeyPose[] _gestures;
@@ -68,18 +68,21 @@ public class HandTracking : MonoBehaviour
 
     private void ShowPoints()
     {
-        // Left Hand Thumb tip
-        pos[0] = MLHandTracking.Left.Thumb.KeyPoints[2].Position;
-        // Left Hand Index finger tip 
-        pos[1] = MLHandTracking.Left.Index.KeyPoints[2].Position;
-        // Left Hand Wrist 
-        pos[2] = MLHandTracking.Left.Wrist.KeyPoints[0].Position;
-        // sphereThumb.transform.position = pos[0];
-        // sphereIndex.transform.position = pos[1];
-        // sphereWrist.transform.position = pos[2];
-        Vector3 temp = MLHandTracking.Left.Center;
+        Vector3 temp = MLHandTracking.Left.Thumb.Tip.Position;
         temp.y -= (float)0.03;
-        handCenter.transform.position = temp;
+        leftThumb.transform.position = temp;
+
+        temp = MLHandTracking.Left.Middle.Tip.Position;
+        temp.y -= (float)0.03;
+        leftMiddle.transform.position = temp;
+
+        temp = MLHandTracking.Left.Pinky.Tip.Position;
+        temp.y -= (float)0.03;
+        leftPinky.transform.position = temp;
+
+        temp = MLHandTracking.Left.Center;
+        temp.y -= (float)0.03;
+        leftCenter.transform.position = temp;
     }
 
     private bool GetGesture(MLHandTracking.Hand hand, MLHandTracking.HandKeyPose type)
