@@ -34,7 +34,7 @@ public class ColliderScript : MonoBehaviour
     }
 
     void Update() {
-      Debug.Log("updating, size = " + meshToTime.Keys.Count);
+      // Debug.Log("updating, size = " + meshToTime.Keys.Count);
       counter = 0;
       float updateTime = Time.deltaTime;
 
@@ -43,7 +43,7 @@ public class ColliderScript : MonoBehaviour
       List<GameObject> removals = new List<GameObject>(); // list of items to remove
 
       foreach(GameObject go in gos) {
-        Debug.Log("\t" + counter++ + ", " + updateTime);
+        // Debug.Log("\t" + counter++ + ", " + updateTime);
         float time = meshToTime[go] + updateTime;
         if (time > decayTimer) {
           removals.Add(go);
