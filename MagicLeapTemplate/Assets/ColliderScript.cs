@@ -18,7 +18,7 @@ public class ColliderScript : MonoBehaviour
     private Color startColor; // based off the color of the Material;
     public Color endColor;
 
-    private float decayTimer = 5f; // upper bound for when to delete a mesh, in seconds
+    private float decayTimer = 10f; // upper bound for when to delete a mesh, in seconds
     private Dictionary<GameObject, float> meshToTime;
     private int counter = 0; // only update every once in a while
 

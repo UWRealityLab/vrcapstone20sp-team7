@@ -69,19 +69,19 @@ public class HandTracking : MonoBehaviour
     private void ShowPoints()
     {
         Vector3 temp = MLHandTracking.Left.Thumb.Tip.Position;
-        temp.y -= (float)0.03;
+        //temp.y -= (float)0.03;
         leftThumb.transform.position = temp;
 
         temp = MLHandTracking.Left.Middle.Tip.Position;
-        temp.y -= (float)0.03;
+        //temp.y -= (float)0.03;
         leftMiddle.transform.position = temp;
 
         temp = MLHandTracking.Left.Pinky.Tip.Position;
-        temp.y -= (float)0.03;
+        //temp.y -= (float)0.03;
         leftPinky.transform.position = temp;
 
         temp = MLHandTracking.Left.Center;
-        temp.y -= (float)0.03;
+        //temp.y -= (float)0.03;
         leftCenter.transform.position = temp;
     }
 
