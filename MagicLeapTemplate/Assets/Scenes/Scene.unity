@@ -354,7 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 164732762}
   material: {fileID: 2100000, guid: 07813f85581dd89409d31ff28b90d50a, type: 2}
-  contaminationManager: {fileID: 0}
+  contaminationManager: {fileID: 1835417539}
 --- !u!54 &164732768
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1374,6 +1374,56 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 26.22, y: 23.04, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1835417539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1835417541}
+  - component: {fileID: 1835417540}
+  m_Layer: 0
+  m_Name: ContaminationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1835417540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835417539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53582d83c2f066b4abfc08d92763014d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startMaterial: {fileID: 2100000, guid: 07813f85581dd89409d31ff28b90d50a, type: 2}
+  endColor: {r: 0.33962262, g: 0, b: 0, a: 0}
+  decayTimeout: 5
+  coldColor: {r: 0, g: 0.509953, b: 1, a: 0}
+  hotColor: {r: 0.9245283, g: 0, b: 0, a: 0}
+  turnOnHeatmap: 1
+  heatmapTimer: 20
+--- !u!4 &1835417541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835417539}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1932952940
 GameObject:
   m_ObjectHideFlags: 0
