@@ -15,47 +15,21 @@ public class ColliderScript : MonoBehaviour
     public GameObject hand;
 
     public Material material;
-    private Color startColor; // based off the color of the Material;
-    public Color endColor;
 
-    private float decayTimer = 10f; // upper bound for when to delete a mesh, in seconds
-    private Dictionary<GameObject, float> meshToTime;
-    private int counter = 0; // only update every once in a while
+    public GameObject contaminationManager;
+    private ContaminationScript contaminationScript;
 
 
     private HashSet<string> processedMeshes = new HashSet<string>();
     private int index = 0;
 
     void Start() {
-      startColor = material.GetColor("_Color");
-      meshToTime = new Dictionary<GameObject, float>();
+      contaminationScript = contaminationManager.GetComponent<ContaminationScript>();
     }
 
     void Update() {
-      // Debug.Log("updating, size = " + meshToTime.Keys.Count);
-      counter = 0;
-      float updateTime = Time.deltaTime;
 
-      GameObject[] gos = new GameObject[meshToTime.Keys.Count];
-      meshToTime.Keys.CopyTo(gos, 0);
-      List<GameObject> removals = new List<GameObject>(); // list of items to remove
-
-      foreach(GameObject go in gos) {
-        // Debug.Log("\t" + counter++ + ", " + updateTime);
-        float time = meshToTime[go] + updateTime;
-        if (time > decayTimer) {
-          removals.Add(go);
-        } else {
-          meshToTime[go] = time;
-          go.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.Lerp(startColor, endColor, time / decayTimer));
-        }
-      }
-      foreach(GameObject go in removals) {
-        meshToTime.Remove(go);
-        //Destroy(go);
-        go.GetComponent<MeshRenderer>().enabled = false;
-      }
-  }
+    }
 
     public void CollisionEnter(Collision collision)
     {
@@ -132,9 +106,8 @@ public class ColliderScript : MonoBehaviour
             }
             meshFromSubmeshMeshRendererComponent.enabled = true;
             meshFromSubmeshMeshRendererComponent.material = material;
-            if(!meshToTime.ContainsKey(collision.gameObject)) {
-              meshToTime.Add(collision.gameObject, 0f);
-            }
+
+            contaminationScript.TouchMesh(collision.gameObject);
         }
 
     }
