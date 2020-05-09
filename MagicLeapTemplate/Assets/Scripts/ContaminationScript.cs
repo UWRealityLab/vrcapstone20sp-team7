@@ -17,26 +17,53 @@ This class is in charge of all code related to the liveliness and contamination 
 
 public class ContaminationScript : MonoBehaviour
 {
+    // this represents the modes the contamination manager can be in.
+    // Decay: shows the meshes in real time
+    // heatmap: shows a heatmap of values the user has touched
+    public enum ContaminationView {
+        Decay,
+        Heatmap
+    }
+
+    [Tooltip("Material of the contaminated mesh when touched by the user")]
     public Material startMaterial;
     private Color startColor;
+
+    [Tooltip("Final Color that the contaminated mesh goes towards while decaying")]
     public Color endColor;
 
-    public float decayTimeout = 10f; // upper bound for when to delete a mesh, in seconds
+    [Tooltip("How long a mesh decays for, in seconds")]
+    public float decayTimeout = 10f;
 
-    private Dictionary<GameObject, float> meshToTime; // maps meshes to the time they've been displayed
-    private Dictionary<GameObject, int> meshToNumTouches; // maps meshes to the number of times the user has touched them
+    private ContaminationView view = ContaminationView.Decay;
+
+    private Dictionary<GameObject, float> meshToTime;     // maps meshes to the time they've been displayed
+    private Dictionary<GameObject, float> meshToNumTouches; // maps meshes to the number of times the user has touched them
+
+    private float maxHeatmapValue;
+    [Tooltip("Heatmap color of the least touched areas")]
+    public Color coldColor;
+    [Tooltip("Heatmap color of the most touched areas")]
+    public Color hotColor;
+    [Tooltip("If true, turns on Heatmap mode after a certain amount of time (debugging only)")]
+    public bool turnOnHeatmap;
+    [Tooltip("How long before we switch to Heatmap mode, in seconds (debugging only)")]
+    public float heatmapTimer = 20f;
+    private float heatmapCounter = 0f; // this should be deleted once we have proper UI for switching modes
 
 
     // Start is called before the first frame update
     void Start() {
         startColor = startMaterial.GetColor("_Color");
         meshToTime = new Dictionary<GameObject, float>();
-        meshToNumTouches = new Dictionary<GameObject, int>();
+        meshToNumTouches = new Dictionary<GameObject, float>();
     }
 
     // Update is called once per frame
     void Update() {
-        UpdateDecay();
+        if (view == ContaminationView.Decay) {
+            UpdateDecay();
+        }
     }
 
     // Updates the decay status of all the meshes being touched, updating their mesh and deactivating them if they
@@ -63,17 +90,52 @@ public class ContaminationScript : MonoBehaviour
           meshToTime.Remove(go);
           go.GetComponent<MeshRenderer>().enabled = false;
         }
+
+        heatmapCounter += updateTime;
+        if (heatmapCounter > heatmapTimer && turnOnHeatmap) {
+            ChangeContaminationView(ContaminationView.Heatmap);
+        }
     }
 
     // call when user touches a mesh
     public void TouchMesh(GameObject mesh) {
-        Debug.Log("touch mesh");
-        meshToTime[mesh] = 0f;
+        if (view == ContaminationView.Decay) {
+            MeshRenderer mr = mesh.GetComponent<MeshRenderer>();
+            if (mr == null) {
+                mr = mesh.AddComponent<MeshRenderer>();
+            }
+            mr.enabled = true;
+            mr.material = startMaterial;
+
+            meshToTime[mesh] = 0f;
+        }
 
         if (!meshToNumTouches.ContainsKey(mesh)) {
-            meshToNumTouches[mesh] = 0;
+            meshToNumTouches[mesh] = 1f;
         } else {
-            meshToNumTouches[mesh] = meshToNumTouches[mesh] + 1;
+            meshToNumTouches[mesh] += 1f;
+        }
+    }
+
+    public void ChangeContaminationView(ContaminationView newView) {
+        view = newView;
+
+        if (view == ContaminationView.Heatmap) {
+            maxHeatmapValue = 1f;
+            foreach(KeyValuePair<GameObject, float> entry in meshToNumTouches) {
+                if (maxHeatmapValue < entry.Value) {
+                    maxHeatmapValue = entry.Value;
+                }
+            }
+            Debug.Log("Changing to Heatmap view with max value = " + maxHeatmapValue);
+
+            GameObject[] gos = new GameObject[meshToNumTouches.Keys.Count]; // list of meshes to check
+            meshToNumTouches.Keys.CopyTo(gos, 0);
+            foreach(GameObject go in gos) {
+                MeshRenderer mr = go.GetComponent<MeshRenderer>();
+                mr.enabled = true;
+                mr.material.SetColor("_Color", Color.Lerp(coldColor, hotColor, meshToNumTouches[go] / maxHeatmapValue));
+            }
         }
     }
 }

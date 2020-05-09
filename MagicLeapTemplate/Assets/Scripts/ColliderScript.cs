@@ -99,6 +99,7 @@ public class ColliderScript : MonoBehaviour
         else if (collision.gameObject.name.Contains("SubMesh"))
         {
             Debug.Log(collision.gameObject.name + "submeshed");
+            /*
             MeshRenderer meshFromSubmeshMeshRendererComponent = collision.gameObject.GetComponent<MeshRenderer>();
             if (meshFromSubmeshMeshRendererComponent == null)
             {
@@ -106,6 +107,7 @@ public class ColliderScript : MonoBehaviour
             }
             meshFromSubmeshMeshRendererComponent.enabled = true;
             meshFromSubmeshMeshRendererComponent.material = material;
+            */
 
             contaminationScript.TouchMesh(collision.gameObject);
         }
