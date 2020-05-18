@@ -129,6 +129,19 @@ public class ContaminationScript : MonoBehaviour
         }
     }
 
+    // accelerates the time of the virus by the given amount
+    // arg: addedTime - amount of time to add, in seconds
+    public void IncrementTime(float addedTime) {
+        //TODO: maybe add some sort of smoothing effect so that this changes gradually
+
+        GameObject[] gos = new GameObject[meshToTime.Keys.Count];
+        meshToTime.Keys.CopyTo(gos, 0);
+
+        foreach(GameObject go in gos) {
+          meshToTime[go] += addedTime;
+        }
+    }
+
     public void ChangeContaminationView(ContaminationView newView) {
         if (view == newView) {
             // nothing to change
