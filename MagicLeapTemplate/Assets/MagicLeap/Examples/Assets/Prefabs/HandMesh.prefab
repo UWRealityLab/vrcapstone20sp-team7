@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshBlockPrefab: {fileID: 6102260234987963041}
-  _meshMaterial: {fileID: 2100000, guid: aedd3fe3bf7b8794eaf0587ca227cdca, type: 2}
+  _meshMaterial: {fileID: 2100000, guid: 1a55190557520d846be14a6080e78893, type: 2}
   _recalculateNormals: 0
 --- !u!1 &6102260234987963041
 GameObject:

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +9,7 @@ public class HandTracking : MonoBehaviour
     public enum HandPoses { Ok, Finger, Thumb, OpenHand, Fist, NoPose };
     public HandPoses pose = HandPoses.NoPose;
     public Vector3[] pos;
-    public GameObject leftThumb, leftMiddle, leftPinky, leftCenter;
+    public GameObject leftThumb, leftMiddle, leftPinky, leftCenter, handParticleEmission;
     // public Text text;
 
     private MLHandTracking.HandKeyPose[] _gestures;
@@ -83,6 +83,9 @@ public class HandTracking : MonoBehaviour
         temp = MLHandTracking.Left.Center;
         //temp.y -= (float)0.03;
         leftCenter.transform.position = temp;
+		handParticleEmission.transform.position = temp;
+
+
     }
 
     private bool GetGesture(MLHandTracking.Hand hand, MLHandTracking.HandKeyPose type)
