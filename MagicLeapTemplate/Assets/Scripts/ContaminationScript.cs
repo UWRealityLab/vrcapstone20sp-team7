@@ -19,10 +19,12 @@ public class ContaminationScript : MonoBehaviour
 {
     // this represents the modes the contamination manager can be in.
     // Decay: shows the meshes in real time
-    // heatmap: shows a heatmap of values the user has touched
+    // Heatmap: shows a heatmap of values the user has touched
+    // Clean: this mode removes meshes when user touches them
     public enum ContaminationView {
         Decay,
-        Heatmap
+        Heatmap,
+        Clean
     }
 
     [Tooltip("Material of the contaminated mesh when touched by the user")]
@@ -51,6 +53,9 @@ public class ContaminationScript : MonoBehaviour
     public float heatmapTimer = 20f;
     private float heatmapCounter = 0f; // this should be deleted once we have proper UI for switching modes
 
+    [Tooltip("If true, virus will not decay when in cleaning mode")]
+    public bool cleanModeNoDecay;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -61,7 +66,7 @@ public class ContaminationScript : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (view == ContaminationView.Decay) {
+        if (view == ContaminationView.Decay || (view == ContaminationView.Clean && !cleanModeNoDecay)) {
             UpdateDecay();
         }
     }
@@ -108,19 +113,42 @@ public class ContaminationScript : MonoBehaviour
             mr.material = startMaterial;
 
             meshToTime[mesh] = 0f;
-        }
 
-        if (!meshToNumTouches.ContainsKey(mesh)) {
-            meshToNumTouches[mesh] = 1f;
-        } else {
-            meshToNumTouches[mesh] += 1f;
+            if (!meshToNumTouches.ContainsKey(mesh)) {
+                meshToNumTouches[mesh] = 1f;
+            } else {
+                meshToNumTouches[mesh] += 1f;
+            }
+        } else if (view == ContaminationView.Clean) {
+            if (meshToTime.ContainsKey(mesh)) {
+                MeshRenderer mr = mesh.GetComponent<MeshRenderer>();
+                mr.enabled = false;
+
+                meshToTime.Remove(mesh);
+            }
+        }
+    }
+
+    // accelerates the time of the virus by the given amount
+    // arg: addedTime - amount of time to add, in seconds
+    public void IncrementTime(float addedTime) {
+        //TODO: maybe add some sort of smoothing effect so that this changes gradually
+
+        GameObject[] gos = new GameObject[meshToTime.Keys.Count];
+        meshToTime.Keys.CopyTo(gos, 0);
+
+        foreach(GameObject go in gos) {
+          meshToTime[go] += addedTime;
         }
     }
 
     public void ChangeContaminationView(ContaminationView newView) {
-        view = newView;
+        if (view == newView) {
+            // nothing to change
+            return;
+        }
 
-        if (view == ContaminationView.Heatmap) {
+        if (newView == ContaminationView.Heatmap) {
             maxHeatmapValue = 1f;
             foreach(KeyValuePair<GameObject, float> entry in meshToNumTouches) {
                 if (maxHeatmapValue < entry.Value) {
@@ -136,6 +164,40 @@ public class ContaminationScript : MonoBehaviour
                 mr.enabled = true;
                 mr.material.SetColor("_Color", Color.Lerp(coldColor, hotColor, meshToNumTouches[go] / maxHeatmapValue));
             }
+        } else if (newView == ContaminationView.Clean) {
+            // if we are going from Heatmap to Clean, we need to refresh which mesh renderers are active
+            if (view == ContaminationView.Heatmap) {
+                GameObject[] gos = new GameObject[meshToNumTouches.Keys.Count]; // list of meshes to check
+                meshToNumTouches.Keys.CopyTo(gos, 0);
+                foreach(GameObject go in gos) {
+                    MeshRenderer mr = go.GetComponent<MeshRenderer>();
+                    if (meshToTime.ContainsKey(go)) {
+                        // TODO: might not need to do anything here - test if we can comment this branch out
+                        mr.enabled = true;
+                        go.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.Lerp(startColor, endColor, meshToTime[go] / decayTimeout));
+                    } else {
+                        mr.enabled = false;
+                    }
+                }
+            }
+        } else if (newView == ContaminationView.Decay) {
+            // if we are going from Heatmap to Clean, we need to refresh which mesh renderers are active
+            if (view == ContaminationView.Heatmap) {
+                GameObject[] gos = new GameObject[meshToNumTouches.Keys.Count]; // list of meshes to check
+                meshToNumTouches.Keys.CopyTo(gos, 0);
+                foreach(GameObject go in gos) {
+                    MeshRenderer mr = go.GetComponent<MeshRenderer>();
+                    if (meshToTime.ContainsKey(go)) {
+                        // TODO: might not need to do anything here - test if we can comment this branch out
+                        mr.enabled = true;
+                        go.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.Lerp(startColor, endColor, meshToTime[go] / decayTimeout));
+                    } else {
+                        mr.enabled = false;
+                    }
+                }
+            }
         }
+
+        view = newView;
     }
 }
