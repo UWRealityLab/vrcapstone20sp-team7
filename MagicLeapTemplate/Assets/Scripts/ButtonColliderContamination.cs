@@ -11,8 +11,12 @@ public class ButtonColliderContamination : MonoBehaviour
     public HandEffect handEffect;
     public MeshCombiner meshCombiner;
 
+    public ContaminationScript contaminationScript;
+
     private bool isBeingHovered;
     private float currTime;
+
+    private readonly float selectTime = 1.5f; 
 
 
     public void Start()
@@ -28,11 +32,11 @@ public class ButtonColliderContamination : MonoBehaviour
             currTime += Time.deltaTime;
 
             ColorBlock colors = button.colors;
-            colors.normalColor = Color.Lerp(Color.white, Color.red, currTime / 2);
+            colors.normalColor = Color.Lerp(Color.white, Color.red, currTime / selectTime);
             colors.highlightedColor = Color.white;
             button.colors = colors;
 
-            if (currTime >= 2.0f)
+            if (currTime >= selectTime)
             {
                 OnSelect();
                 isBeingHovered = false;
@@ -67,5 +71,6 @@ public class ButtonColliderContamination : MonoBehaviour
         sparkScript.OnClick();
         meshCombiner.changeToVirus();
         handEffect.changeToRed();
+        contaminationScript.ChangeContaminationView(ContaminationScript.ContaminationView.Decay);
     }
 }

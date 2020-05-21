@@ -5,13 +5,13 @@ using UnityEngine;
 public class HandEffect : MonoBehaviour
 {
     
-	public UnityEngine.XR.MagicLeap.MLHandMeshingBehavior redHand;
-	public UnityEngine.XR.MagicLeap.MLHandMeshingBehavior blueHand;
+	public GameObject redHand;
+	public GameObject blueHand;
     // Start is called before the first frame update
     void Start()
     {
-        redHand.enabled = true;
-        blueHand.enabled = false;
+        redHand.SetActive(true);
+        blueHand.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,13 +22,19 @@ public class HandEffect : MonoBehaviour
 
     public void changeToRed()
     {
-    	redHand.enabled = true;
-        blueHand.enabled = false;
+    	redHand.SetActive(true);
+        blueHand.SetActive(false);
     }
 
     public void changeToBlue()
     {
-    	redHand.enabled = false;
-        blueHand.enabled = true;
+    	redHand.SetActive(false);
+        blueHand.SetActive(true);
+    }
+
+    public void changeToNothing()
+    {
+        redHand.SetActive(false);
+        blueHand.SetActive(false);
     }
 }

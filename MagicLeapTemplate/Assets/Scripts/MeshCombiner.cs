@@ -35,4 +35,10 @@ public class MeshCombiner : MonoBehaviour
     	psrVirus.enabled = false;
         psrBubble.enabled = true;
     }
+
+    public void changeToNothing()
+    {
+        psrVirus.enabled = false;
+        psrBubble.enabled = false;
+    }
 }

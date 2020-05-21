@@ -28,7 +28,9 @@ public class HandTracking : MonoBehaviour
         pos = new Vector3[3];
         menuIsOn = false;
         menu.SetActive(false);
+        pointers.SetActive(false);
     }
+
     private void OnDestroy()
     {
         MLHandTracking.Stop();
@@ -68,18 +70,23 @@ public class HandTracking : MonoBehaviour
 
     private void DoMenuActions()
     {
-        if (pose == HandPoses.Finger && !menuIsOn)
+        if (pose == HandPoses.Finger)
         {
             menu.SetActive(true);
             pointers.SetActive(true);
-            menuIsOn = true;
         }
-        else if (pose == HandPoses.Thumb && menuIsOn)
-        {
-            menu.SetActive(false);
-            pointers.SetActive(false);
-            menuIsOn = false;
-        }
+        //if (pose == HandPoses.Finger && !menuIsOn)
+        //{
+        //    menu.SetActive(true);
+        //    pointers.SetActive(true);
+        //    menuIsOn = true;
+        //}
+        //else if (pose == HandPoses.Thumb && menuIsOn)
+        //{
+        //    menu.SetActive(false);
+        //    pointers.SetActive(false);
+        //    menuIsOn = false;
+        //}
     }
 
     private void ShowPoints()

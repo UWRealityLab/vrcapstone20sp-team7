@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonColliderCleaning : MonoBehaviour
+public class ButtonColliderHeatMap : MonoBehaviour
 {
     public Button button;
     public SparkScript sparkScript;
-
+    
     public HandEffect handEffect;
     public MeshCombiner meshCombiner;
 
@@ -32,7 +32,7 @@ public class ButtonColliderCleaning : MonoBehaviour
             currTime += Time.deltaTime;
 
             ColorBlock colors = button.colors;
-            colors.normalColor = Color.Lerp(Color.white, Color.blue, currTime / selectTime);
+            colors.normalColor = Color.Lerp(Color.white, Color.green, currTime / selectTime);
             colors.highlightedColor = Color.white;
             button.colors = colors;
 
@@ -69,8 +69,8 @@ public class ButtonColliderCleaning : MonoBehaviour
         // call a function here
         Debug.Log("selected!!");
         sparkScript.OnClick();
-        handEffect.changeToBlue();
-        meshCombiner.changeToBubble();
-        contaminationScript.ChangeContaminationView(ContaminationScript.ContaminationView.Clean);
+        meshCombiner.changeToNothing();
+        handEffect.changeToNothing();
+        contaminationScript.ChangeContaminationView(ContaminationScript.ContaminationView.Heatmap);
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class SparkScript : MonoBehaviour
 {
     public GameObject spark;
+    public GameObject menu;
+    public GameObject pointers;
 
     private bool isRendering;
     private float currTime;
@@ -26,6 +28,7 @@ public class SparkScript : MonoBehaviour
             {
                 spark.SetActive(false);
                 isRendering = false;
+                menu.SetActive(false);
             }
         }
     }
@@ -34,6 +37,7 @@ public class SparkScript : MonoBehaviour
     {
         isRendering = true;
         spark.SetActive(true);
+        pointers.SetActive(false);
         currTime = 0f;
     }
 }

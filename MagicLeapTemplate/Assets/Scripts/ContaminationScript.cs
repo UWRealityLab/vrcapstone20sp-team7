@@ -35,7 +35,7 @@ public class ContaminationScript : MonoBehaviour
     public Color endColor;
 
     [Tooltip("How long a mesh decays for, in seconds")]
-    public float decayTimeout = 10f;
+    public float decayTimeout = 30f;
 
     private ContaminationView view = ContaminationView.Decay;
 
@@ -96,10 +96,10 @@ public class ContaminationScript : MonoBehaviour
           go.GetComponent<MeshRenderer>().enabled = false;
         }
 
-        heatmapCounter += updateTime;
-        if (heatmapCounter > heatmapTimer && turnOnHeatmap) {
-            ChangeContaminationView(ContaminationView.Heatmap);
-        }
+        //heatmapCounter += updateTime;
+        //if (heatmapCounter > heatmapTimer && turnOnHeatmap) {
+        //    ChangeContaminationView(ContaminationView.Heatmap);
+        //}
     }
 
     // call when user touches a mesh
@@ -147,6 +147,8 @@ public class ContaminationScript : MonoBehaviour
             // nothing to change
             return;
         }
+
+        Debug.Log(newView);
 
         if (newView == ContaminationView.Heatmap) {
             maxHeatmapValue = 1f;
