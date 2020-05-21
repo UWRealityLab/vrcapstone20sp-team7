@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class ButtonCollider : MonoBehaviour
 {
     public Button button;
-
+    public SparkScript sparkScript;
+    
     private bool isBeingHovered;
     private float currTime;
 
@@ -60,5 +61,6 @@ public class ButtonCollider : MonoBehaviour
     {
         // call a function here
         Debug.Log("selected!!");
+        sparkScript.OnClick();
     }
 }
