@@ -10,9 +10,10 @@ public class HandTracking : MonoBehaviour
     public HandPoses pose = HandPoses.NoPose;
     public Vector3[] pos;
     public GameObject leftThumb, leftMiddle, leftPinky, leftCenter, handParticleEmission;
-    // public Text text;
+    public GameObject menu, pointers;
 
     private MLHandTracking.HandKeyPose[] _gestures;
+    private bool menuIsOn;
 
     private void Start()
     {
@@ -25,6 +26,8 @@ public class HandTracking : MonoBehaviour
         _gestures[4] = MLHandTracking.HandKeyPose.Thumb;
         MLHandTracking.KeyPoseManager.EnableKeyPoses(_gestures, true, false);
         pos = new Vector3[3];
+        menuIsOn = false;
+        menu.SetActive(false);
     }
     private void OnDestroy()
     {
@@ -59,11 +62,24 @@ public class HandTracking : MonoBehaviour
             pose = HandPoses.NoPose;
         }
 
-        //if (pose != HandPoses.Ok)
-        //{
-        //    Debug.Log("asdfasdf");
-        //}
         ShowPoints();
+        DoMenuActions();
+    }
+
+    private void DoMenuActions()
+    {
+        if (pose == HandPoses.Finger && !menuIsOn)
+        {
+            menu.SetActive(true);
+            pointers.SetActive(true);
+            menuIsOn = true;
+        }
+        else if (pose == HandPoses.Thumb && menuIsOn)
+        {
+            menu.SetActive(false);
+            pointers.SetActive(false);
+            menuIsOn = false;
+        }
     }
 
     private void ShowPoints()

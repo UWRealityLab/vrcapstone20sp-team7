@@ -29,9 +29,9 @@ namespace MagicLeapTools
 
         //Public Variables:
         [Tooltip("Can we drag this?")]
-        public bool draggable = true;
+        public bool draggable = false;
         [Tooltip("Toggles isKinematic on released from dragging so it will be imovable by other collisions.")]
-        public bool kinematicWhileIdle = true;
+        public bool kinematicWhileIdle = false;
         [Tooltip("Face camera while being dragged?")]
         public bool faceWhileDragging;
         [Tooltip("Face away from the the wall we are pointing at.")]
