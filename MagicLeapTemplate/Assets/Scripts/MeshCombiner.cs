@@ -14,13 +14,25 @@ public class MeshCombiner : MonoBehaviour
         mesh.SetTriangles(mesh.triangles, 0);
         mesh.subMeshCount = 1;
         psrVirus.mesh = mesh;
-        psrVirus.enabled = false;
-        psrBubble.enabled = true;
+        psrVirus.enabled = true;
+        psrBubble.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void changeToVirus()
+    {
+    	psrVirus.enabled = true;
+        psrBubble.enabled = false;
+    }
+
+    public void changeToBubble()
+    {
+    	psrVirus.enabled = false;
+        psrBubble.enabled = true;
     }
 }

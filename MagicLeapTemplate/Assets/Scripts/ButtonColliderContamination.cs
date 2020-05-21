@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonCollider : MonoBehaviour
+public class ButtonColliderContamination : MonoBehaviour
 {
     public Button button;
     public SparkScript sparkScript;
     
+    public HandEffect handEffect;
+    public MeshCombiner meshCombiner;
+
     private bool isBeingHovered;
     private float currTime;
 
@@ -62,5 +65,7 @@ public class ButtonCollider : MonoBehaviour
         // call a function here
         Debug.Log("selected!!");
         sparkScript.OnClick();
+        meshCombiner.changeToVirus();
+        handEffect.changeToRed();
     }
 }
