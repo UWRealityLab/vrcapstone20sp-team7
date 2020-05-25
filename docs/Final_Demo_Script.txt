@@ -1,3 +1,23 @@
 General Script Outline
 ----------------------
 
+- start with person going outside and touching infected areas with hands
+- person comes back home and starts touching things around the house
+	- eg. Laptop, desk, plates, etc
+	- maybe use video editing to make this part sped up
+- demonstrate the surfaces are still contaminated after some time
+
+- person learns about the dangers of coronavirus sticking to surfaces
+	- idk how to do this... maybe the person can watch a video on the laptop about the dangers? lol
+- switch to heatmap mode to demonstrate how much we've touched
+- "wow look how much I've spread around my house!"  D:
+	
+- person decides to dis-infect surfaces
+- demonstrate cleaning mode disinfecting areas that are conaminated
+- person says they're now more educated and can protect themselves better against coronavirus
+
+- END
+
+Notes
+------------------------
+- if we don't want the person to talk we can do black screen with text, like in silent films
