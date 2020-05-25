@@ -9,7 +9,7 @@ public class ButtonColliderHeatMap : MonoBehaviour
     public SparkScript sparkScript;
     
     public HandEffect handEffect;
-    public MeshCombiner meshCombiner;
+    public MeshCombiner leftMeshCombiner, rightMeshCombiner;
 
     public ContaminationScript contaminationScript;
 
@@ -69,7 +69,8 @@ public class ButtonColliderHeatMap : MonoBehaviour
         // call a function here
         Debug.Log("selected!!");
         sparkScript.OnClick();
-        meshCombiner.changeToNothing();
+        leftMeshCombiner.changeToNothing();
+        rightMeshCombiner.changeToNothing();
         handEffect.changeToNothing();
         contaminationScript.ChangeContaminationView(ContaminationScript.ContaminationView.Heatmap);
     }

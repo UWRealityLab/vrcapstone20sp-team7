@@ -9,7 +9,8 @@ public class HandTracking : MonoBehaviour
     public enum HandPoses { Ok, Finger, Thumb, OpenHand, Fist, NoPose };
     public HandPoses pose = HandPoses.NoPose;
     public Vector3[] pos;
-    public GameObject leftThumb, leftMiddle, leftPinky, leftCenter, handParticleEmission;
+    public GameObject leftThumb, leftMiddle, leftPinky, leftCenter, leftHandParticleEmission;
+    public GameObject rightThumb, rightMiddle, rightPinky, rightCenter, rightHandParticleEmission;
     public GameObject menu, pointers;
 
     private MLHandTracking.HandKeyPose[] _gestures;
@@ -39,31 +40,14 @@ public class HandTracking : MonoBehaviour
 
     private void Update()
     {
-        if (GetGesture(MLHandTracking.Left, MLHandTracking.HandKeyPose.Ok))
-        {
-            pose = HandPoses.Ok;
-        }
-        else if (GetGesture(MLHandTracking.Left, MLHandTracking.HandKeyPose.Finger))
+        if (GetGesture(MLHandTracking.Right, MLHandTracking.HandKeyPose.Finger))
         {
             pose = HandPoses.Finger;
-        }
-        else if (GetGesture(MLHandTracking.Left, MLHandTracking.HandKeyPose.OpenHand))
-        {
-            pose = HandPoses.OpenHand;
-        }
-        else if (GetGesture(MLHandTracking.Left, MLHandTracking.HandKeyPose.Fist))
-        {
-            pose = HandPoses.Fist;
-        }
-        else if (GetGesture(MLHandTracking.Left, MLHandTracking.HandKeyPose.Thumb))
-        {
-            pose = HandPoses.Thumb;
         }
         else
         {
             pose = HandPoses.NoPose;
         }
-
         ShowPoints();
         DoMenuActions();
     }
@@ -75,22 +59,13 @@ public class HandTracking : MonoBehaviour
             menu.SetActive(true);
             pointers.SetActive(true);
         }
-        //if (pose == HandPoses.Finger && !menuIsOn)
-        //{
-        //    menu.SetActive(true);
-        //    pointers.SetActive(true);
-        //    menuIsOn = true;
-        //}
-        //else if (pose == HandPoses.Thumb && menuIsOn)
-        //{
-        //    menu.SetActive(false);
-        //    pointers.SetActive(false);
-        //    menuIsOn = false;
-        //}
     }
 
     private void ShowPoints()
     {
+        /*
+         * Left hand
+         */
         Vector3 temp = MLHandTracking.Left.Thumb.Tip.Position;
         //temp.y -= (float)0.03;
         leftThumb.transform.position = temp;
@@ -106,9 +81,28 @@ public class HandTracking : MonoBehaviour
         temp = MLHandTracking.Left.Center;
         //temp.y -= (float)0.03;
         leftCenter.transform.position = temp;
-		handParticleEmission.transform.position = temp;
+        leftHandParticleEmission.transform.position = temp;
 
 
+        /*
+         * Right hand
+         */
+        temp = MLHandTracking.Right.Thumb.Tip.Position;
+        //temp.y -= (float)0.03;
+        rightThumb.transform.position = temp;
+
+        temp = MLHandTracking.Right.Middle.Tip.Position;
+        //temp.y -= (float)0.03;
+        rightMiddle.transform.position = temp;
+
+        temp = MLHandTracking.Right.Pinky.Tip.Position;
+        //temp.y -= (float)0.03;
+        rightPinky.transform.position = temp;
+
+        temp = MLHandTracking.Right.Center;
+        //temp.y -= (float)0.03;
+        rightCenter.transform.position = temp;
+        rightHandParticleEmission.transform.position = temp;
     }
 
     private bool GetGesture(MLHandTracking.Hand hand, MLHandTracking.HandKeyPose type)

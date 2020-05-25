@@ -9,7 +9,7 @@ public class ButtonColliderCleaning : MonoBehaviour
     public SparkScript sparkScript;
 
     public HandEffect handEffect;
-    public MeshCombiner meshCombiner;
+    public MeshCombiner leftMeshCombiner, rightMeshCombiner;
 
     public ContaminationScript contaminationScript;
 
@@ -69,8 +69,9 @@ public class ButtonColliderCleaning : MonoBehaviour
         // call a function here
         Debug.Log("selected!!");
         sparkScript.OnClick();
+        leftMeshCombiner.changeToBubble();
+        rightMeshCombiner.changeToBubble();
         handEffect.changeToBlue();
-        meshCombiner.changeToBubble();
         contaminationScript.ChangeContaminationView(ContaminationScript.ContaminationView.Clean);
     }
 }

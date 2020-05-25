@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonColliderContamination : MonoBehaviour
+public class ButtonCollider1h : MonoBehaviour
 {
     public Button button;
     public SparkScript sparkScript;
-    
-    public HandEffect handEffect;
-    public MeshCombiner leftMeshCombiner, rightMeshCombiner;
-
-    public ContaminationScript contaminationScript;
 
     private bool isBeingHovered;
     private float currTime;
 
-    private readonly float selectTime = 1.5f; 
+    private readonly float selectTime = 1.5f;
 
 
     public void Start()
@@ -32,7 +27,7 @@ public class ButtonColliderContamination : MonoBehaviour
             currTime += Time.deltaTime;
 
             ColorBlock colors = button.colors;
-            colors.normalColor = Color.Lerp(Color.white, Color.red, currTime / selectTime);
+            colors.normalColor = Color.Lerp(Color.white, Color.yellow, currTime / selectTime);
             colors.highlightedColor = Color.white;
             button.colors = colors;
 
@@ -69,9 +64,5 @@ public class ButtonColliderContamination : MonoBehaviour
         // call a function here
         Debug.Log("selected!!");
         sparkScript.OnClick();
-        leftMeshCombiner.changeToVirus();
-        rightMeshCombiner.changeToVirus();
-        handEffect.changeToRed();
-        contaminationScript.ChangeContaminationView(ContaminationScript.ContaminationView.Decay);
     }
 }
