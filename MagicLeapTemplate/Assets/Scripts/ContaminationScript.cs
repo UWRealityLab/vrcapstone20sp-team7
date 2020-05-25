@@ -142,6 +142,17 @@ public class ContaminationScript : MonoBehaviour
         }
     }
 
+    // disables the mesh renderers of all contaminatd surfaces in the scene
+    public void ClearContaminationMeshes() {
+        GameObject[] gos = new GameObject[meshToTime.Keys.Count];
+        meshToTime.Keys.CopyTo(gos, 0);
+
+        foreach(GameObject go in gos) {
+          meshToTime.Remove(go);
+          go.GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
+
     public void ChangeContaminationView(ContaminationView newView) {
         if (view == newView) {
             // nothing to change
