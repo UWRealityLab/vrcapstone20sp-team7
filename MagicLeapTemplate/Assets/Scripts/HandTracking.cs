@@ -12,9 +12,12 @@ public class HandTracking : MonoBehaviour
     public GameObject leftThumb, leftMiddle, leftPinky, leftCenter, leftHandParticleEmission;
     public GameObject rightThumb, rightMiddle, rightPinky, rightCenter, rightHandParticleEmission;
     public GameObject menu, pointers;
+    public UIManager uiManager;
 
     private MLHandTracking.HandKeyPose[] _gestures;
     private bool menuIsOn;
+    private float _secondsToHoldPose = 2;
+    private float _timer = 0;
 
     private void Start()
     {
@@ -30,6 +33,7 @@ public class HandTracking : MonoBehaviour
         menuIsOn = false;
         menu.SetActive(false);
         pointers.SetActive(false);
+        _timer = _secondsToHoldPose;
     }
 
     private void OnDestroy()
@@ -40,17 +44,39 @@ public class HandTracking : MonoBehaviour
 
     private void Update()
     {
+        ShowPoints();
         if (GetGesture(MLHandTracking.Right, MLHandTracking.HandKeyPose.Finger))
         {
             pose = HandPoses.Finger;
+            _timer = _secondsToHoldPose;
+        }
+        else if (GetGesture(MLHandTracking.Right, MLHandTracking.HandKeyPose.Ok))
+        {
+            _timer -= Time.deltaTime;
+            if (_timer > 0) 
+            {
+                pose = HandPoses.Ok;
+                Debug.Log("hand ok");
+            }
         }
         else
         {
             pose = HandPoses.NoPose;
+            _timer = _secondsToHoldPose;
         }
-        ShowPoints();
         DoMenuActions();
+        DoIntroActions();
     }
+
+    private void DoIntroActions()
+    {
+        if (pose == HandPoses.Ok && _timer < 0)
+        {
+            uiManager.moveToNextPage();
+            _timer = _secondsToHoldPose;
+        }
+    }
+
 
     private void DoMenuActions()
     {
