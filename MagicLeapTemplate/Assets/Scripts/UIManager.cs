@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject SpatialMapper;
     public GameObject HandEffectLeft, HandEffectRight;
     public bool IsIntroExplicit; // if true, meshing will be disabled until intro finishes
-    public GameObject page1, page2;
+    public GameObject page1, page2, page3, page4;
 
     private float timeout = 5f;
     private float timeSinceLastCheck = 0f;
@@ -29,6 +29,8 @@ public class UIManager : MonoBehaviour
         HandEffectLeft.SetActive(false);
         page1.SetActive(true);
         page2.SetActive(false);
+        page3.SetActive(false);
+        page4.SetActive(false);
       }
     }
 
@@ -40,16 +42,29 @@ public class UIManager : MonoBehaviour
         // if (timeSinceLastCheck > timeout) {
         //   StartApp();
         // }
-        if (pageNum == 1) 
+        if (pageNum == 1)
         {
-        } else if (pageNum == 2) 
+        }
+        else if (pageNum == 2)
         {
-        	page1.SetActive(false);
-        	page2.SetActive(true);
-        } else {
-        	// start app once user moved to the end
-        	page2.SetActive(false);
-        	StartApp();
+            page1.SetActive(false);
+            page2.SetActive(true);
+
+        }
+        else if (pageNum == 3)
+        {
+            // start app once user moved to the end
+            page2.SetActive(false);
+            page3.SetActive(true);
+        } else if (pageNum == 4)
+        {
+            page3.SetActive(false);
+            page4.SetActive(true);
+        }
+        else
+        {
+            page4.SetActive(false);
+            StartApp();
         }
     }
     public void moveToNextPage()

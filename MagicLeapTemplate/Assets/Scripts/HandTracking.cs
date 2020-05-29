@@ -85,6 +85,11 @@ public class HandTracking : MonoBehaviour
             menu.SetActive(true);
             pointers.SetActive(true);
         }
+        else
+        {
+            menu.SetActive(false);
+            pointers.SetActive(false);
+        }
     }
 
     private void ShowPoints()
